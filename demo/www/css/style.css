@@ -1,0 +1,15 @@
+.loginBg{
+  background-image:url('img/seataltea.jpg');
+   background-size:cover;
+}
+
+.img{
+display:block;
+margin:auto;
+}
+
+.btn-img-seat{
+  position: absolute;
+top: 5px;
+right: 5px;
+}

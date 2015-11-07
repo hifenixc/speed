@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your App name</title>    
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">    
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="Description" content="Your description">
+<meta name="Keywords" content="your,keywords">
+
+
+    <link rel="apple-touch-icon" href="icon-72.png" />
+    <link rel="apple-touch-startup-image" href="Default.png" />    
+    
+    <link rel="stylesheet" type="text/css" href="css/speedometer.css" media="screen" />
+    
+    <script type="text/javascript" src="js/jquery-1.4.2.js"></script>
+    <script type="text/javascript" src="js/speedometer.js"></script>
+        <script type="text/javascript" src="phonegap.0.9.4.js"></script>
+        <script type="text/javascript">
+            touchMove = function(event) {
+                // Prevent scrolling on this element
+                event.preventDefault();
+            }
+
+            </script>
+
+</head>
+<body>
+<div id="landscape" ontouchmove="touchMove(event);">
+
+	<!-- speedometer screen -->
+	<div id="speedometer">
+		<input type="button" id="configurationButton" />
+		<div id="needle"></div>	
+		<div id="speed">0</div>
+		<div id="metric">kmh</div>	
+		<div id="accuracy"></div>
+		<div id="gpsMessage">No signal</div>
+	</div>
+	<!-- configuration screen -->
+	<div id="configuration">
+		<ul id="themes">
+			<li><a id="themeButton1" href="#"></a></li>
+			<li><a id="themeButton2" href="#"></a></li>
+		  <li><a id="themeButton3" href="#"></a></li>
+		  <li><a id="themeButton4" href="#"></a></li>
+		  <li><a id="themeButton5" href="#"></a></li>
+		  <li><a id="themeButton6" href="#"></a></li>	
+		</ul>
+		<div class="toolbar">
+			<input type="button" id="saveButton" value="Save" />
+		</div>
+	</div>
+
+
+</div>
+<div id="portrait" ontouchmove="touchMove(event);"></div>
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=YOURIDHERE" async="async"></script>
+
+
+</body>
+</html>

@@ -1,70 +1,82 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Your App name</title>    
-    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">    
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-<meta name="Description" content="Your description">
-<meta name="Keywords" content="your,keywords">
+<html >
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
 
+        <title>Sign-in, Then Tabs Example</title>
 
-    <link rel="apple-touch-icon" href="icon-72.png" />
-    <link rel="apple-touch-startup-image" href="Default.png" />    
-    
-    <link rel="stylesheet" type="text/css" href="css/speedometer.css" media="screen" />
-    
-    <script type="text/javascript" src="js/jquery-1.4.2.js"></script>
-    <script type="text/javascript" src="js/speedometer.js"></script>
+        <link href="http://code.ionicframework.com/nightly/css/ionic.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+        <script type="text/javascript" src="js/jquery-1.4.2.js"></script>
+        <script src="http://code.ionicframework.com/1.1.0/js/ionic.js"></script>
         <script type="text/javascript" src="phonegap.0.9.4.js"></script>
-        <script type="text/javascript">
-            touchMove = function(event) {
-                // Prevent scrolling on this element
-                event.preventDefault();
-            }
+        <script type="text/javascript" src="js/jquery.md5.js"></script>
+        <script >
+            $(document).ready(function () {
+                $("#login").click(function () {
 
-            </script>
-
-</head>
-<body>
-<div id="landscape" ontouchmove="touchMove(event);">
-<p class="header">Online SpeedoMeter - Start Driving your vehicle</p>
-	<!-- speedometer screen -->
-	<div id="speedometer">
-		<input type="button" id="configurationButton" />
-		<div id="needle"></div>	
-		<div id="speed">0</div>
-		<div id="metric">kmh</div>	
-		<div id="accuracy"></div>
-		<div id="gpsMessage">No signal</div>
-	</div>
-	<!-- configuration screen -->
-	<div id="configuration">
-		<ul id="themes">
-			<li><a id="themeButton1" href="#"></a></li>
-			<li><a id="themeButton2" href="#"></a></li>
-		  <li><a id="themeButton3" href="#"></a></li>
-		  <li><a id="themeButton4" href="#"></a></li>
-		  <li><a id="themeButton5" href="#"></a></li>
-		  <li><a id="themeButton6" href="#"></a></li>	
-		</ul>
-		<div class="toolbar">
-			<input type="button" id="saveButton" value="Save" />
-		</div>
-	</div>
-<p class="footer">Created by <a href="http://www.mobigeni.com/">MobiGeni.com</a></p>
-
-</div>
-<div id="portrait" ontouchmove="touchMove(event);"></div>
+                    if ($("#datas").attr("checked")) {
+                        lengua = false;
+                        var ulrws = "http://ws.seatexperience.net/";
+                        var versionWS = "ws1";
+                        var lengua = false;
+                        var user = $("#username").val();
+                        var password = $("#password").val();
+                        var apikey = $.md5(user + '%%' + $.md5(password));
+                        var url = ulrws + apikey + "/" + versionWS + "/" + lengua + "/get.login.null.json/0";
+                        $.getJSON(url, function (json) {
 
 
 
 
+                            if (json.status > 0) {
+                                window.location="portal.html";
 
-<!-- Go to www.addthis.com/dashboard to customize your tools -->
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=YOURIDHERE" async="async"></script>
+                            } else {
+                                alert('Email Incorrecto!')
+                            }
+                        });
+                    } else {
+                        alert('Acepta los terminos de Uso');
+                    }
+                })
+            });</script>
+    </head>
+
+    <body style="  background-image:url('img/seataltea.jpg');
+          background-size:cover;">
+        <div>
+            <!-- <ion-nav-title><img src="img/logo.png" width="40"></ion-nav-title> -->
+
+            <ion-content class="padding ">
+
+                <div class="row responsive-sm padding remvoeBP bajar">
+                    <div class="col">
+                        <div class="centrado" ><img class="img" src="img/logo.png"></div>
+
+                        <div class="list list-inset removePM">
+                            <label class="item item-input"><input type="text" id="username"  placeholder="Email Address" > </label>
+                            <label class="item item-input" style="display:none;" ><input type="text" id="password"  placeholder="Password" value="ibiza2015" > </label>
+                        </div>
+                        <ul class="list">
+                            <li class="item item-toggle">
+                                Acepta los terminos de uso:
+                                <label class="toggle toggle-positive">
+                                    <input type="checkbox" id="datas" checked="">
+                                    <div class="track">
+                                        <div class="handle"></div>
+                                    </div>
+                                </label>
+                            </li>
+                        </ul>
+
+                        <div class="loginButton"><button id="login" class="button ion-unlocked button-block button-assertive" ng-click="login(user);" > Login </button>  </div>
+                    </div>
+                </div>
 
 
-</body>
+
+            </ion-content>
+        </div>
+    </body>
 </html>
